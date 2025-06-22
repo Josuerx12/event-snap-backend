@@ -5,8 +5,10 @@ import {
 import { Repository } from 'typeorm';
 import { User } from '../../domain/entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Injectable } from '@nestjs/common';
 
-@ValidatorConstraint({ async: true })
+@Injectable()
+@ValidatorConstraint({ async: true, name: 'ValidateUserDocumentExists' })
 export class ValidateUserDocumentExists
   implements ValidatorConstraintInterface
 {
@@ -27,6 +29,6 @@ export class ValidateUserDocumentExists
     return !userExists;
   }
   defaultMessage(): string {
-    return 'Documento informado já se encontra em uso.';
+    return 'documento informado já se encontra em uso.';
   }
 }

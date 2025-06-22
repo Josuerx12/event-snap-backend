@@ -13,10 +13,10 @@ import { ValidateUserDocumentExists } from './application/validations/validate-u
   imports: [TypeOrmModule.forFeature([User, PersonalInfo, CompanyInfo])],
   controllers: [UserController],
   providers: [
-    UserService,
-    ...UserUseCases,
     ValidateUserEmailExists,
     ValidateUserDocumentExists,
+    UserService,
+    ...UserUseCases,
   ],
 })
 export class UserModule {}

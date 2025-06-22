@@ -3,7 +3,6 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
   Put,
@@ -38,7 +37,7 @@ export class UserController {
 
   @Put(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    updateUserDto.id = id;
+    // updateUserDto.id = id;
     return this.userService.update(updateUserDto);
   }
 

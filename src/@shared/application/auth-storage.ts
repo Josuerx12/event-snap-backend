@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-
 import { AsyncLocalStorage } from 'async_hooks';
 import { User } from '../../user/domain/entities/user.entity';
 

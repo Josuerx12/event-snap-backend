@@ -9,6 +9,7 @@ import { compareSync } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import { AES } from 'crypto-js';
 import { ConfigService } from '@nestjs/config';
+import { UserMapper } from '../../user/domain/mappers/user.mapper';
 
 export class SignInUseCase implements IUseCase<SignInDto, SignInOutput> {
   private readonly secret: string;
@@ -44,7 +45,12 @@ export class SignInUseCase implements IUseCase<SignInDto, SignInOutput> {
 
     delete user.password;
 
-    const encyptedUser = AES.encrypt(JSON.stringify(user), this.encryptSecret);
+    const userOutput = UserMapper.toOutput(user);
+
+    const encyptedUser = AES.encrypt(
+      JSON.stringify(userOutput),
+      this.encryptSecret,
+    ).toString();
 
     const accessToken = sign({ user: encyptedUser }, this.secret, {
       expiresIn: '1d',

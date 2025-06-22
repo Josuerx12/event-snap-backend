@@ -6,7 +6,7 @@ import { UserOutput } from '../outputs/user.output';
 
 export class GetLoggedUseCase implements IUseCase<null, UserOutput> {
   execute(): UserOutput {
-    const user = AuthStorage.get().user;
+    const user = AuthStorage.get()?.user;
 
     if (!user) {
       throw new UnauthorizedException(

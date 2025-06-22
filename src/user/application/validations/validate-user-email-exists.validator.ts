@@ -5,8 +5,10 @@ import {
 import { Repository } from 'typeorm';
 import { User } from '../../domain/entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Injectable } from '@nestjs/common';
 
-@ValidatorConstraint({ async: true })
+@ValidatorConstraint({ async: true, name: 'ValidateUserEmailExists' })
+@Injectable()
 export class ValidateUserEmailExists implements ValidatorConstraintInterface {
   constructor(
     @InjectRepository(User) private readonly userRepo: Repository<User>,
@@ -21,6 +23,6 @@ export class ValidateUserEmailExists implements ValidatorConstraintInterface {
     return !userExists;
   }
   defaultMessage(): string {
-    return 'Email informado já se encontra em uso.';
+    return 'email informado já se encontra em uso.';
   }
 }
