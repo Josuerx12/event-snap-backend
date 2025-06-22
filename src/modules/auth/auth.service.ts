@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { SignInDto } from './dto/sign-in.dto';
-import { SignInUseCase } from './use-cases/sign-in.use-case';
+import { SignInUseCase } from '../../core/auth/application/use-cases/sign-in.use-case';
+import { SignInDto } from '../../core/auth/domain/dto/sign-in.dto';
 
 @Injectable()
 export class AuthService {

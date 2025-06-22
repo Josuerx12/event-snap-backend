@@ -8,10 +8,10 @@ import { AccountType } from '../../domain/enums/account-type.enum';
 import { PersonalInfo } from '../../domain/entities/personal-info.entity';
 import { CompanyInfo } from '../../domain/entities/company-info.entity';
 import { UserMapper } from '../../domain/mappers/user.mapper';
-import { PhoneVo } from '../../../@shared/arq/value-objects/phone.vo';
-import { CpfVo } from '../../../@shared/arq/value-objects/cpf.vo';
-import { CnpjVo } from '../../../@shared/arq/value-objects/cnpj.vo';
-import { IUseCase } from '../../../@shared/arq/interface/use-case.interface';
+import { PhoneVo } from '../../../../@shared/arq/value-objects/phone.vo';
+import { CpfVo } from '../../../../@shared/arq/value-objects/cpf.vo';
+import { CnpjVo } from '../../../../@shared/arq/value-objects/cnpj.vo';
+import { IUseCase } from '../../../../@shared/arq/interface/use-case.interface';
 
 export class CreateUserUseCase implements IUseCase<CreateUserDto, UserOutput> {
   constructor(

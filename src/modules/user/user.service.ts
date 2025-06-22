@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { CreateUserDto } from './domain/dto/create-user.dto';
-import { UpdateUserDto } from './domain/dto/update-user.dto';
-import { CreateUserUseCase } from './application/use-cases/create-user.use-case';
-import { UpdateUserUseCase } from './application/use-cases/update-user.use-case';
-import { GetLoggedUseCase } from './application/use-cases/get-logged.use-case';
+import { CreateUserUseCase } from '../../core/user/application/use-cases/create-user.use-case';
+import { GetLoggedUseCase } from '../../core/user/application/use-cases/get-logged.use-case';
+import { UpdateUserUseCase } from '../../core/user/application/use-cases/update-user.use-case';
+import { CreateUserDto } from '../../core/user/domain/dto/create-user.dto';
+import { UpdateUserDto } from '../../core/user/domain/dto/update-user.dto';
 
 @Injectable()
 export class UserService {

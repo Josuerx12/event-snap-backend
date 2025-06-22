@@ -4,9 +4,9 @@ import { ConfigService } from '@nestjs/config';
 import { AES, enc } from 'crypto-js';
 import { verify } from 'jsonwebtoken';
 import { DataSource } from 'typeorm';
-import { UserOutput } from '../../user/application/outputs/user.output';
-import { User } from '../../user/domain/entities/user.entity';
+import { UserOutput } from '../../core/user/application/outputs/user.output';
 import { AuthStorage } from '../../@shared/application/auth-storage';
+import { User } from '../../core/user/domain/entities/user.entity';
 
 @Injectable()
 export class AuthContextMiddleware implements NestMiddleware {

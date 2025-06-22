@@ -1,15 +1,16 @@
 import { Repository } from 'typeorm';
-import { IUseCase } from '../../@shared/arq/interface/use-case.interface';
-import { SignInDto } from '../dto/sign-in.dto';
+
 import { SignInOutput } from '../output/sign-in.output';
-import { User } from '../../user/domain/entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BadRequestException, UnauthorizedException } from '@nestjs/common';
 import { compareSync } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import { AES } from 'crypto-js';
 import { ConfigService } from '@nestjs/config';
-import { UserMapper } from '../../user/domain/mappers/user.mapper';
+import { IUseCase } from '../../../../@shared/arq/interface/use-case.interface';
+import { User } from '../../../user/domain/entities/user.entity';
+import { UserMapper } from '../../../user/domain/mappers/user.mapper';
+import { SignInDto } from '../../domain/dto/sign-in.dto';
 
 export class SignInUseCase implements IUseCase<SignInDto, SignInOutput> {
   private readonly secret: string;

@@ -1,5 +1,5 @@
 import { AsyncLocalStorage } from 'async_hooks';
-import { User } from '../../user/domain/entities/user.entity';
+import { User } from '../../core/user/domain/entities/user.entity';
 
 export type Auth = {
   user?: User;

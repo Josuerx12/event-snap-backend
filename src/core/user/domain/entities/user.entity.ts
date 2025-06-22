@@ -2,7 +2,7 @@ import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
 import { PersonalInfo } from './personal-info.entity';
 import { CompanyInfo } from './company-info.entity';
 import { AccountType } from '../enums/account-type.enum';
-import { EntityAbstract } from '../../../@shared/arq/abstract/entity.abstract';
+import { EntityAbstract } from '../../../../@shared/arq/abstract/entity.abstract';
 
 @Entity({
   name: 'users',
