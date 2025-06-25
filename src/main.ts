@@ -6,6 +6,7 @@ import { InvalidPhoneExceptionFilter } from './@shared/application/filters/inval
 import { InvalidCpfExceptionFilter } from './@shared/application/filters/invalid-cpf-exception.filter';
 import { InvalidCnpjExceptionFilter } from './@shared/application/filters/invalid-cnpj-exception.filter copy';
 import { useContainer } from 'class-validator';
+import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.interface';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -25,7 +26,14 @@ async function bootstrap() {
     new InvalidCnpjExceptionFilter(),
   );
 
-  app.enableCors({ origin: '*', credentials: true });
+  const corsConfig: CorsOptions = {
+    origin: '*',
+    methods: ['POST', 'GET', 'PUT', 'PATCH', 'OPTIONS'],
+    allowedHeaders: '*',
+    credentials: true,
+  };
+
+  app.enableCors(corsConfig);
 
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
 

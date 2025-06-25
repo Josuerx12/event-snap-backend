@@ -17,6 +17,7 @@ import { User } from '../../core/user/domain/entities/user.entity';
         password: configService.get<string>('DB_PASSWORD'),
         database: configService.get<string>('DB_NAME'),
         autoLoadEntities: true,
+        ssl: configService.get<boolean>('DB_SSL', false),
         synchronize: configService.get<boolean>('DB_SYNC', false),
         logging: configService.get<boolean>('DB_LOGGING', false),
       }),
