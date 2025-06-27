@@ -19,6 +19,6 @@ export class DeletePlanUseCase implements IUseCase<ByIdDTO, void> {
       throw new NotFoundException('Plano com o id informado não encontrado.');
     }
 
-    await this.repository.delete(plan);
+    await this.repository.remove(plan);
   }
 }

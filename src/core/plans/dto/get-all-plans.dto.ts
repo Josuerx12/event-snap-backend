@@ -15,6 +15,6 @@ export class GetAllPlansDTO extends GetAllDTO<PlanFilterDTO> {
 
   constructor(props: any) {
     super(props);
-    this.filter = props.filter;
+    this.filter = props?.filter;
   }
 }

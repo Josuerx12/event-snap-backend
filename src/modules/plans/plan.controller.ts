@@ -7,6 +7,7 @@ import {
   Delete,
   Put,
   Query,
+  HttpCode,
 } from '@nestjs/common';
 import { CreatePlanDTO } from '../../core/plans/dto/create-plan.dto';
 import { UpdatePlanDTO } from '../../core/plans/dto/update-plan.dto';
@@ -39,6 +40,7 @@ export class PlanController {
   }
 
   @Delete(':id')
+  @HttpCode(204)
   delete(@Param() data: ByIdDTO) {
     return this.planService.delete(data);
   }

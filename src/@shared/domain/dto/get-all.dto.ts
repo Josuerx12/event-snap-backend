@@ -33,10 +33,10 @@ export class GetAllDTO<FilterT> {
   filter?: FilterT;
 
   constructor(props: Props<FilterT>) {
-    this.sort = props.sort;
-    this.orderBy = props.orderBy;
-    this.page = props.page ? parseInt(props.page) : 1;
-    this.perPage = props.perPage ? parseInt(props.perPage) : 15;
-    this.filter = props.filter;
+    this.sort = props?.sort;
+    this.orderBy = props?.orderBy;
+    this.page = props?.page ? parseInt(props.page) : 1;
+    this.perPage = props?.perPage ? parseInt(props.perPage) : 15;
+    this.filter = props?.filter;
   }
 }
