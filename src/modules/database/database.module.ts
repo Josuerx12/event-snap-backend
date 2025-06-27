@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { CompanyInfo } from '../../core/user/domain/entities/company-info.entity';
 import { PersonalInfo } from '../../core/user/domain/entities/personal-info.entity';
 import { User } from '../../core/user/domain/entities/user.entity';
+import { Plan } from '../../core/plans/domain/plan.entity';
 
 @Module({
   imports: [
@@ -23,7 +24,7 @@ import { User } from '../../core/user/domain/entities/user.entity';
       }),
       inject: [ConfigService],
     }),
-    TypeOrmModule.forFeature([User, CompanyInfo, PersonalInfo]),
+    TypeOrmModule.forFeature([User, CompanyInfo, PersonalInfo, Plan]),
   ],
 })
 export class DatabaseModule {}

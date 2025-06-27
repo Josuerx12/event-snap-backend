@@ -1,6 +1,6 @@
 import { ExceptionFilter, Catch, ArgumentsHost } from '@nestjs/common';
 import { Response } from 'express';
-import { InvalidCpfError } from '../../arq/value-objects/cpf.vo';
+import { InvalidCpfError } from '../../domain/value-objects/cpf.vo';
 
 @Catch(InvalidCpfError)
 export class InvalidCpfExceptionFilter implements ExceptionFilter {

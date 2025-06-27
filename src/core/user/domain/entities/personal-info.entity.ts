@@ -1,6 +1,6 @@
 import { Column, Entity, OneToOne } from 'typeorm';
 import { User } from './user.entity';
-import { EntityAbstract } from '../../../../@shared/arq/abstract/entity.abstract';
+import { EntityAbstract } from '../../../../@shared/domain/abstract/entity.abstract';
 
 @Entity({
   name: 'personal_infos',

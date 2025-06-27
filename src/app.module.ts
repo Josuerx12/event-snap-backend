@@ -8,6 +8,7 @@ import { APP_GUARD, Reflector } from '@nestjs/core';
 import { AuthGuard } from './middlewares/auth-guard/auth-guard';
 import { AuthContextMiddleware } from './middlewares/auth-guard/auth-context.middleware';
 import { AuthModule } from './modules/auth/auth.module';
+import { PlanModule } from './modules/plans/plan.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { AuthModule } from './modules/auth/auth.module';
     DatabaseModule,
     UserModule,
     AuthModule,
+    PlanModule,
   ],
   controllers: [AppController],
   providers: [

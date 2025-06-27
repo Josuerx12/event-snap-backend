@@ -1,6 +1,6 @@
 import { ExceptionFilter, Catch, ArgumentsHost } from '@nestjs/common';
 import { Response } from 'express';
-import { InvalidCnpjError } from '../../arq/value-objects/cnpj.vo';
+import { InvalidCnpjError } from '../../domain/value-objects/cnpj.vo';
 
 @Catch(InvalidCnpjError)
 export class InvalidCnpjExceptionFilter implements ExceptionFilter {

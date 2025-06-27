@@ -1,6 +1,6 @@
 import { ExceptionFilter, Catch, ArgumentsHost } from '@nestjs/common';
 import { Response } from 'express';
-import { InvalidPhoneError } from '../../arq/value-objects/phone.vo';
+import { InvalidPhoneError } from '../../domain/value-objects/phone.vo';
 
 @Catch(InvalidPhoneError)
 export class InvalidPhoneExceptionFilter implements ExceptionFilter {

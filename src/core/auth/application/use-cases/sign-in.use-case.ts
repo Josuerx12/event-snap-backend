@@ -7,7 +7,7 @@ import { compareSync } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import { AES } from 'crypto-js';
 import { ConfigService } from '@nestjs/config';
-import { IUseCase } from '../../../../@shared/arq/interface/use-case.interface';
+import { IUseCase } from '../../../../@shared/domain/interface/use-case.interface';
 import { User } from '../../../user/domain/entities/user.entity';
 import { UserMapper } from '../../../user/domain/mappers/user.mapper';
 import { SignInDto } from '../../domain/dto/sign-in.dto';

@@ -1,9 +1,9 @@
 import { UnauthorizedException } from '@nestjs/common';
 import { AuthStorage } from '../../../../@shared/application/auth-storage';
-import { IUseCase } from '../../../../@shared/arq/interface/use-case.interface';
+import { IUseCase } from '../../../../@shared/domain/interface/use-case.interface';
 import { CreateUserDto } from '../../domain/dto/create-user.dto';
 import { UserOutput } from '../outputs/user.output';
-import { PhoneVo } from '../../../../@shared/arq/value-objects/phone.vo';
+import { PhoneVo } from '../../../../@shared/domain/value-objects/phone.vo';
 import { Repository } from 'typeorm';
 import { User } from '../../domain/entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';

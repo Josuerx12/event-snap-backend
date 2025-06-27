@@ -1,6 +1,6 @@
 import { UnauthorizedException } from '@nestjs/common';
 import { AuthStorage } from '../../../../@shared/application/auth-storage';
-import { IUseCase } from '../../../../@shared/arq/interface/use-case.interface';
+import { IUseCase } from '../../../../@shared/domain/interface/use-case.interface';
 import { UserMapper } from '../../domain/mappers/user.mapper';
 import { UserOutput } from '../outputs/user.output';
 
