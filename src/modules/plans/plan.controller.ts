@@ -14,6 +14,7 @@ import { UpdatePlanDTO } from '../../core/plans/dto/update-plan.dto';
 import { ByIdDTO } from '../../core/plans/dto/by-id.dto';
 import { GetAllPlansDTO } from '../../core/plans/dto/get-all-plans.dto';
 import { PlanService } from './plan.service';
+import { IsPublic } from '../../@shared/application/decorators/is-public.decorator';
 
 @Controller('plans')
 export class PlanController {
@@ -23,6 +24,7 @@ export class PlanController {
     return this.planService.create(createPlanDto);
   }
 
+  @IsPublic()
   @Get()
   findAll(@Query() query: GetAllPlansDTO) {
     return this.planService.findAll(query);

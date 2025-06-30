@@ -12,15 +12,15 @@ import { ValidateUserEmailExists } from '../../application/validations/validate-
 import { ValidateUserDocumentExists } from '../../application/validations/validate-user-document-exists.validator';
 
 export class CreateUserDto {
-  @IsString()
-  @Length(1, 255)
+  @IsString({ message: 'O nome é obrigatório.' })
+  @Length(1, 255, { message: 'O nome deve ter entre 1 e 255 caracteres.' })
   name: string;
 
-  @IsEmail()
+  @IsEmail({}, { message: 'O email informado é inválido.' })
   @Validate(ValidateUserEmailExists)
   email: string;
 
-  @IsString()
+  @IsString({ message: 'O documento é obrigatório.' })
   @Validate(ValidateUserDocumentExists)
   document: string;
 
@@ -28,17 +28,17 @@ export class CreateUserDto {
   @IsOptional()
   birthdate?: Date;
 
-  @IsString()
-  @Length(6)
+  @IsString({ message: 'A senha é obrigatória.' })
+  @Length(6, 20, { message: 'A senha deve ter no mínimo 6 caracteres.' })
   password: string;
 
-  @IsString()
+  @IsString({ message: 'O telefone é obrigatório.' })
   phone: string;
 
   @IsEnum(AccountType)
   accountType: AccountType;
 
   @IsOptional()
-  @IsString()
+  @IsString({ message: 'O nome da empresa deve ser um texto.' })
   companyName?: string;
 }

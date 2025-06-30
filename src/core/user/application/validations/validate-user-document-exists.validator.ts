@@ -16,7 +16,7 @@ export class ValidateUserDocumentExists
     @InjectRepository(User) private readonly userRepo: Repository<User>,
   ) {}
   async validate(value: string): Promise<boolean> {
-    const cleanedValue = value.replace(/\D/g, '');
+    const cleanedValue = value?.replace(/\D/g, '');
 
     const userExists = await this.userRepo
       .createQueryBuilder('user')

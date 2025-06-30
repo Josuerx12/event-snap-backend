@@ -1,7 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { UnprocessableEntityException, ValidationPipe } from '@nestjs/common';
-import { ValidationExceptionFilter } from './@shared/application/filters/validation-exception.filter';
 import { InvalidPhoneExceptionFilter } from './@shared/application/filters/invalid-phone-exception.filter';
 import { InvalidCpfExceptionFilter } from './@shared/application/filters/invalid-cpf-exception.filter';
 import { InvalidCnpjExceptionFilter } from './@shared/application/filters/invalid-cnpj-exception.filter copy';
@@ -48,7 +47,7 @@ async function bootstrap() {
         return new UnprocessableEntityException({
           statusCode: 422,
           type: 'ValidationError',
-          message: 'Invalid request body content',
+          message: 'Dados inválidos',
           error: errors.reduce(recursiveReduce, {}),
         });
       },
