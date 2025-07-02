@@ -12,7 +12,7 @@ import {
 
 import { PlanService } from './plan.service';
 import { IsPublic } from '../../@shared/application/decorators/is-public.decorator';
-import { ByIdDTO } from '../../core/plans/domain/dto/by-id.dto';
+import { ByIdDTO } from '../../@shared/domain/dto/by-id.dto';
 import { CreatePlanDTO } from '../../core/plans/domain/dto/create-plan.dto';
 import { GetAllPlansDTO } from '../../core/plans/domain/dto/get-all-plans.dto';
 import { UpdatePlanDTO } from '../../core/plans/domain/dto/update-plan.dto';

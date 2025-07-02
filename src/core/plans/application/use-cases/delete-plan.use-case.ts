@@ -3,7 +3,7 @@ import { Repository } from 'typeorm';
 import { IUseCase } from '../../../../@shared/domain/interface/use-case.interface';
 import { Plan } from '../../domain/entities/plan.entity';
 import { NotFoundException } from '@nestjs/common';
-import { ByIdDTO } from '../../domain/dto/by-id.dto';
+import { ByIdDTO } from '../../../../@shared/domain/dto/by-id.dto';
 
 export class DeletePlanUseCase implements IUseCase<ByIdDTO, void> {
   constructor(

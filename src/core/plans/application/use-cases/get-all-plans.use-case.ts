@@ -15,8 +15,14 @@ export class GetAllPlansUseCase
   ) {}
 
   async execute(input: GetAllPlansDTO): Promise<PaginationOutput<PlanOutput>> {
+    const whereConditions: any = {};
+
+    if (input.filter?.search) {
+      whereConditions.name = input.filter.search;
+    }
+
     const [plans, count] = await this.repository.findAndCount({
-      ...(input.filter?.search && { where: { name: input.filter.search } }),
+      where: whereConditions,
       take: input.perPage,
       skip: (input.page - 1) * input.perPage,
     });
