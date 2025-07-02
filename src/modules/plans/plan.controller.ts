@@ -9,12 +9,13 @@ import {
   Query,
   HttpCode,
 } from '@nestjs/common';
-import { CreatePlanDTO } from '../../core/plans/dto/create-plan.dto';
-import { UpdatePlanDTO } from '../../core/plans/dto/update-plan.dto';
-import { ByIdDTO } from '../../core/plans/dto/by-id.dto';
-import { GetAllPlansDTO } from '../../core/plans/dto/get-all-plans.dto';
+
 import { PlanService } from './plan.service';
 import { IsPublic } from '../../@shared/application/decorators/is-public.decorator';
+import { ByIdDTO } from '../../core/plans/domain/dto/by-id.dto';
+import { CreatePlanDTO } from '../../core/plans/domain/dto/create-plan.dto';
+import { GetAllPlansDTO } from '../../core/plans/domain/dto/get-all-plans.dto';
+import { UpdatePlanDTO } from '../../core/plans/domain/dto/update-plan.dto';
 
 @Controller('plans')
 export class PlanController {

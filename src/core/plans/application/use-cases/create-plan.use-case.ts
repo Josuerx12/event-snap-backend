@@ -1,12 +1,12 @@
 import { Repository } from 'typeorm';
 import { IUseCase } from '../../../../@shared/domain/interface/use-case.interface';
-import { CreatePlanDTO } from '../../dto/create-plan.dto';
 import { PlanOutput } from '../shared/output/plan.output';
-import { Plan } from '../../domain/plan.entity';
+import { Plan } from '../../domain/entities/plan.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Currency } from '../../../../@shared/domain/currency';
 import { PlanMapper } from '../../mappers/plan.mapper';
 import { randomUUID } from 'crypto';
+import { CreatePlanDTO } from '../../domain/dto/create-plan.dto';
 
 export class CreatePlanUseCase implements IUseCase<CreatePlanDTO, PlanOutput> {
   constructor(

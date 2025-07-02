@@ -1,6 +1,6 @@
 import { Currency } from '../../../@shared/domain/currency';
 import { PlanOutput } from '../application/shared/output/plan.output';
-import { Plan } from '../domain/plan.entity';
+import { Plan } from '../domain/entities/plan.entity';
 
 export class PlanMapper {
   static toOutput(plan: Plan): PlanOutput {

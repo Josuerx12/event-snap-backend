@@ -1,11 +1,11 @@
 import { Repository } from 'typeorm';
 import { PaginationOutput } from '../../../../@shared/domain/dto/pagination.dto';
 import { IUseCase } from '../../../../@shared/domain/interface/use-case.interface';
-import { GetAllPlansDTO } from '../../dto/get-all-plans.dto';
 import { PlanOutput } from '../shared/output/plan.output';
-import { Plan } from '../../domain/plan.entity';
+import { Plan } from '../../domain/entities/plan.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PlanMapper } from '../../mappers/plan.mapper';
+import { GetAllPlansDTO } from '../../domain/dto/get-all-plans.dto';
 
 export class GetAllPlansUseCase
   implements IUseCase<GetAllPlansDTO, PaginationOutput<PlanOutput>>

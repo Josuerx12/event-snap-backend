@@ -1,8 +1,10 @@
-import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToMany, OneToOne } from 'typeorm';
 import { PersonalInfo } from './personal-info.entity';
 import { CompanyInfo } from './company-info.entity';
 import { AccountType } from '../enums/account-type.enum';
 import { EntityAbstract } from '../../../../@shared/domain/abstract/entity.abstract';
+import { Event } from '../../../events/domain/entities/event.entity';
+import { Subscription } from '../../../subscription/domain/entities/subscription.entity';
 
 @Entity({
   name: 'users',
@@ -47,4 +49,16 @@ export class User extends EntityAbstract {
   })
   @JoinColumn({ name: 'company_info_id' })
   companyInfo: CompanyInfo;
+
+  @OneToMany(() => Event, (e) => e.user, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
+  events: Event[];
+
+  @OneToMany(() => Subscription, (s) => s.user, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
+  subscriptions: Subscription[];
 }

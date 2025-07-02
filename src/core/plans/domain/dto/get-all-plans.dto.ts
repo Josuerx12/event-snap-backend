@@ -1,6 +1,6 @@
 import { IsOptional, IsString, ValidateNested } from 'class-validator';
-import { GetAllDTO } from '../../../@shared/domain/dto/get-all.dto';
 import { Type } from 'class-transformer';
+import { GetAllDTO } from '../../../../@shared/domain/dto/get-all.dto';
 
 export class PlanFilterDTO {
   @IsString()

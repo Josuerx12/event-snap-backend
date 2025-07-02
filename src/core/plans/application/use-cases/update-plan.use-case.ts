@@ -1,12 +1,12 @@
 import { Repository } from 'typeorm';
 import { IUseCase } from '../../../../@shared/domain/interface/use-case.interface';
-import { UpdatePlanDTO } from '../../dto/update-plan.dto';
 import { PlanOutput } from '../shared/output/plan.output';
-import { Plan } from '../../domain/plan.entity';
+import { Plan } from '../../domain/entities/plan.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { NotFoundException } from '@nestjs/common';
 import { Currency } from '../../../../@shared/domain/currency';
 import { PlanMapper } from '../../mappers/plan.mapper';
+import { UpdatePlanDTO } from '../../domain/dto/update-plan.dto';
 
 export class UpdatePlanUseCase implements IUseCase<UpdatePlanDTO, PlanOutput> {
   constructor(

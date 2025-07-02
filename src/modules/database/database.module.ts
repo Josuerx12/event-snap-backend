@@ -4,7 +4,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { CompanyInfo } from '../../core/user/domain/entities/company-info.entity';
 import { PersonalInfo } from '../../core/user/domain/entities/personal-info.entity';
 import { User } from '../../core/user/domain/entities/user.entity';
-import { Plan } from '../../core/plans/domain/plan.entity';
+import { Plan } from '../../core/plans/domain/entities/plan.entity';
+import { Subscription } from '../../core/subscription/domain/entities/subscription.entity';
+import { Photo } from '../../core/photos/domain/entities/photo.entity';
+import { Event } from '../../core/events/domain/entities/event.entity';
 
 @Module({
   imports: [
@@ -24,7 +27,15 @@ import { Plan } from '../../core/plans/domain/plan.entity';
       }),
       inject: [ConfigService],
     }),
-    TypeOrmModule.forFeature([User, CompanyInfo, PersonalInfo, Plan]),
+    TypeOrmModule.forFeature([
+      User,
+      CompanyInfo,
+      PersonalInfo,
+      Plan,
+      Subscription,
+      Photo,
+      Event,
+    ]),
   ],
 })
 export class DatabaseModule {}

@@ -1,5 +1,6 @@
-import { Column, Entity } from 'typeorm';
-import { EntityAbstract } from '../../../@shared/domain/abstract/entity.abstract';
+import { Column, Entity, OneToMany } from 'typeorm';
+import { EntityAbstract } from '../../../../@shared/domain/abstract/entity.abstract';
+import { Subscription } from '../../../subscription/domain/entities/subscription.entity';
 
 @Entity({ name: 'plans' })
 export class Plan extends EntityAbstract {
@@ -20,4 +21,10 @@ export class Plan extends EntityAbstract {
 
   @Column({ name: 'duration_days', type: 'int4' })
   durationDays: number;
+
+  @OneToMany(() => Subscription, (s) => s.user, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
+  subscriptions: Subscription[];
 }

@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { planUseCases } from '../../core/plans/application/use-cases';
 import { PlanService } from './plan.service';
-import { Plan } from '../../core/plans/domain/plan.entity';
+import { Plan } from '../../core/plans/domain/entities/plan.entity';
 import { PlanController } from './plan.controller';
 
 @Module({
