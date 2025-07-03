@@ -9,6 +9,7 @@ import { AuthGuard } from './middlewares/auth-guard/auth-guard';
 import { AuthContextMiddleware } from './middlewares/auth-guard/auth-context.middleware';
 import { AuthModule } from './modules/auth/auth.module';
 import { PlanModule } from './modules/plans/plan.module';
+import { EventsModule } from './modules/events/events.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { PlanModule } from './modules/plans/plan.module';
     UserModule,
     AuthModule,
     PlanModule,
+    EventsModule,
   ],
   controllers: [AppController],
   providers: [

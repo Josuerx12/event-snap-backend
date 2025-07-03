@@ -8,6 +8,7 @@ import { randomUUID } from 'crypto';
 import { AuthStorage } from '../../../../@shared/application/auth-storage';
 import { BadRequestException } from '@nestjs/common';
 import { EventMapper } from '../../mappers/event.mapper';
+import { addHours, isBefore } from 'date-fns';
 
 export class CreateEventUseCase
   implements IUseCase<CreateEventDTO, EventOutput>
@@ -30,7 +31,20 @@ export class CreateEventUseCase
     event.id = randomUUID();
     event.name = input.name;
     event.description = input.description;
-    event.eventDate = new Date(input.eventDate);
+
+    const eventDate = new Date(input.eventDate);
+
+    const now = new Date();
+
+    const limitToCreateAEvent = addHours(now, 1);
+
+    if (isBefore(eventDate, limitToCreateAEvent)) {
+      throw new BadRequestException(
+        'A data do evento deve ser pelo menos 1 hora após o horário atual.',
+      );
+    }
+
+    event.eventDate = eventDate;
     event.publicToken = randomUUID();
     event.user = user;
 

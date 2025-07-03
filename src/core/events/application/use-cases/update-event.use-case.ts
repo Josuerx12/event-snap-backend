@@ -10,13 +10,16 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { EventMapper } from '../../mappers/event.mapper';
+import { UpdateEventDTO } from '../../domain/dto/update-event.dto';
 
-export class UpdateEventUseCase implements IUseCase<Event, EventOutput> {
+export class UpdateEventUseCase
+  implements IUseCase<UpdateEventDTO, EventOutput>
+{
   constructor(
     @InjectRepository(Event) private readonly repository: Repository<Event>,
   ) {}
 
-  async execute(input: Event): Promise<EventOutput> {
+  async execute(input: UpdateEventDTO): Promise<EventOutput> {
     const { user } = AuthStorage.get();
 
     if (!user) {
@@ -41,7 +44,7 @@ export class UpdateEventUseCase implements IUseCase<Event, EventOutput> {
 
     if (input.name) event.name = input.name;
     if (input.description) event.description = input.description;
-    if (input.eventDate) event.eventDate = input.eventDate;
+    if (input.eventDate) event.eventDate = new Date(input.eventDate);
 
     await this.repository.save(event);
 
