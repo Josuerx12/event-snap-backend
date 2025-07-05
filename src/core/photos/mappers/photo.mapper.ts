@@ -6,6 +6,7 @@ export class PhotoMapper {
     return {
       id: photo.id,
       url: photo.image,
+      message: photo.message,
       uploadedBy: photo.uploadBy,
       createdAt: photo.createdAt,
       updatedAt: photo.updatedAt,

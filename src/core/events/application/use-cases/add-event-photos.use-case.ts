@@ -39,6 +39,7 @@ export class AddEventPhotosUseCase
       photo.id = randomUUID();
       photo.image = photoKey;
       photo.sizeInMb = p.size;
+      photo.message = input.message;
       photo.event = event;
 
       await this.repository.save(photo);

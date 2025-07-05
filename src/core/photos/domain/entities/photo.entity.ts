@@ -13,6 +13,9 @@ export class Photo extends EntityAbstract {
   @Column()
   image: string;
 
+  @Column({ nullable: true })
+  message?: string;
+
   @Column({ name: 'size_in_mb' })
   sizeInMb: number;
 
