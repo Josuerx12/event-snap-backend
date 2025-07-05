@@ -1,3 +1,4 @@
+import { PhotoMapper } from '../../photos/mappers/photo.mapper';
 import { UserMapper } from '../../user/domain/mappers/user.mapper';
 import { EventOutput } from '../application/shared/outputs/event.output';
 import { Event } from '../domain/entities/event.entity';
@@ -12,7 +13,7 @@ export class EventMapper {
       publicToken: entity.publicToken,
       logo: entity.logo,
       user: entity?.user && UserMapper.toOutput(entity.user),
-      photos: entity.photos,
+      photos: entity.photos?.map((p) => PhotoMapper.toOutput(p)),
       createdAt: entity.createdAt,
       updatedAt: entity.updatedAt,
     };

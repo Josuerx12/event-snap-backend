@@ -10,10 +10,12 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { S3Gateway } from '../../../aws/s3.gateway';
+import { Photo } from '../../../photos/domain/entities/photo.entity';
 
 export class DeleteEventUseCase implements IUseCase<ByIdDTO, void> {
   constructor(
     @InjectRepository(Event) private readonly repository: Repository<Event>,
+    @InjectRepository(Photo) private readonly photoRepo: Repository<Photo>,
     private readonly s3: S3Gateway,
   ) {}
 
@@ -26,7 +28,10 @@ export class DeleteEventUseCase implements IUseCase<ByIdDTO, void> {
       );
     }
 
-    const event = await this.repository.findOneBy({ id: input.id });
+    const event = await this.repository.findOne({
+      where: { id: input.id },
+      relations: ['photos'],
+    });
 
     if (!event) {
       throw new NotFoundException(
@@ -42,6 +47,16 @@ export class DeleteEventUseCase implements IUseCase<ByIdDTO, void> {
 
     if (event.logo) {
       this.s3.deleteFile(event.logo);
+    }
+
+    if (event.photos && event.photos.length > 0) {
+      const deletePhotosPromise = event.photos.map(async (p) => {
+        await this.s3.deleteFile(p.image);
+
+        await this.photoRepo.remove(p);
+      });
+
+      await Promise.all(deletePhotosPromise);
     }
 
     await this.repository.remove(event);

@@ -9,6 +9,10 @@ import { UpdateEventUseCase } from '../../core/events/application/use-cases/upda
 import { CreateEventDTO } from '../../core/events/domain/dto/create-event.dto';
 import { GetAllEventDTO } from '../../core/events/domain/dto/get-all-event.dto';
 import { UpdateEventDTO } from '../../core/events/domain/dto/update-event.dto';
+import { AddEventPhotosDTO } from '../../core/events/domain/dto/add-event-photos.dto';
+import { AddEventPhotosUseCase } from '../../core/events/application/use-cases/add-event-photos.use-case';
+import { GetEventPhotosDTO } from '../../core/events/domain/dto/get-event-photos.dto';
+import { GetEventPhotosUseCase } from '../../core/events/application/use-cases/get-event-photos.use-case';
 
 @Injectable()
 export class EventService {
@@ -19,10 +23,20 @@ export class EventService {
     private readonly getEventByIdUseCase: GetEventByIdUseCase,
     private readonly getAllEventsUseCase: GetAllEventsUseCase,
     private readonly deleteEventUseCase: DeleteEventUseCase,
+    private readonly addEventPhotosUseCase: AddEventPhotosUseCase,
+    private readonly getEventPhotosUseCase: GetEventPhotosUseCase,
   ) {}
 
   create(data: CreateEventDTO) {
     return this.createEventUseCase.execute(data);
+  }
+
+  addPhotos(data: AddEventPhotosDTO) {
+    return this.addEventPhotosUseCase.execute(data);
+  }
+
+  getPhotos(data: GetEventPhotosDTO) {
+    return this.getEventPhotosUseCase.execute(data);
   }
 
   update(data: UpdateEventDTO) {

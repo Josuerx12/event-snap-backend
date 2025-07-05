@@ -10,11 +10,8 @@ export class Photo extends EntityAbstract {
   @Column({ name: 'upload_by', nullable: true })
   uploadBy?: string;
 
-  @Column({ name: 'photo_key' })
-  photoKey: string;
-
   @Column()
-  url: string;
+  image: string;
 
   @Column({ name: 'size_in_mb' })
   sizeInMb: number;
