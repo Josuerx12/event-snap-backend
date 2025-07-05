@@ -42,6 +42,12 @@ export class EventsController {
     return this.eventService.addPhotos(data);
   }
 
+  @Get(':id/photos')
+  getPhotos(@Param() params: EventByIdDTO, @Query() data: GetEventPhotosDTO) {
+    data.id = params.id;
+    return this.eventService.getPhotos(data);
+  }
+
   @IsPublic()
   @Get(':id/:eventToken')
   getEventWithoutAuth(@Param() params: GetEventWithoutAuthDTO) {
@@ -68,12 +74,6 @@ export class EventsController {
     data.id = byId.id;
     data.file = file;
     return this.eventService.update(data);
-  }
-
-  @Get(':id/photos')
-  getPhotos(@Param() params: EventByIdDTO, @Query() data: GetEventPhotosDTO) {
-    data.id = params.id;
-    return this.eventService.getPhotos(data);
   }
 
   @Get('user')
