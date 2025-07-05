@@ -7,6 +7,7 @@ export type EventOutput = {
   description: string;
   eventDate: Date;
   publicToken: string;
+  qrCode?: string;
   photos?: any[];
   user?: UserOutput;
   createdAt?: Date;

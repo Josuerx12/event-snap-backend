@@ -21,6 +21,7 @@ import { EventByIdDTO } from '../../core/events/domain/dto/get-event-by-id.dto';
 import { IsPublic } from '../../@shared/application/decorators/is-public.decorator';
 import { AddEventPhotosDTO } from '../../core/events/domain/dto/add-event-photos.dto';
 import { GetEventPhotosDTO } from '../../core/events/domain/dto/get-event-photos.dto';
+import { GetEventWithoutAuthDTO } from '../../core/events/domain/dto/get-event-without-auth.dto';
 
 @Controller('events')
 export class EventsController {
@@ -39,6 +40,12 @@ export class EventsController {
     data.id = params.id;
 
     return this.eventService.addPhotos(data);
+  }
+
+  @IsPublic()
+  @Get(':id/:eventToken')
+  getEventWithoutAuth(@Param() params: GetEventWithoutAuthDTO) {
+    return this.eventService.getEventWithoutAuth(params);
   }
 
   @Post()
