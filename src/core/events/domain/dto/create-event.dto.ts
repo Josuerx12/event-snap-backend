@@ -9,4 +9,6 @@ export class CreateEventDTO {
 
   @IsDateString()
   eventDate: string;
+
+  file?: Express.Multer.File;
 }

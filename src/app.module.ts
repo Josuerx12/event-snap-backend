@@ -10,6 +10,7 @@ import { AuthContextMiddleware } from './middlewares/auth-guard/auth-context.mid
 import { AuthModule } from './modules/auth/auth.module';
 import { PlanModule } from './modules/plans/plan.module';
 import { EventsModule } from './modules/events/events.module';
+import { S3Module } from './core/aws/s3.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { EventsModule } from './modules/events/events.module';
     AuthModule,
     PlanModule,
     EventsModule,
+    S3Module,
   ],
   controllers: [AppController],
   providers: [

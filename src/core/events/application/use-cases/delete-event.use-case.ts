@@ -9,10 +9,12 @@ import {
   NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
+import { S3Gateway } from '../../../aws/s3.gateway';
 
 export class DeleteEventUseCase implements IUseCase<ByIdDTO, void> {
   constructor(
     @InjectRepository(Event) private readonly repository: Repository<Event>,
+    private readonly s3: S3Gateway,
   ) {}
 
   async execute(input: ByIdDTO): Promise<void> {
@@ -36,6 +38,10 @@ export class DeleteEventUseCase implements IUseCase<ByIdDTO, void> {
       throw new UnauthorizedException(
         'Você não tem permissão para deletar esse evento.',
       );
+    }
+
+    if (event.logo) {
+      this.s3.deleteFile(event.logo);
     }
 
     await this.repository.remove(event);

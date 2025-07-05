@@ -11,6 +11,9 @@ export class Event extends EntityAbstract {
   @Column()
   name: string;
 
+  @Column({ nullable: true })
+  logo: string;
+
   @Column()
   description: string;
 

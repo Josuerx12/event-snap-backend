@@ -5,12 +5,14 @@ import { EventOutput } from '../shared/outputs/event.output';
 import { Event } from '../../domain/entities/event.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { EventMapper } from '../../mappers/event.mapper';
+import { S3Gateway } from '../../../aws/s3.gateway';
 
 export class GetEventByIdUseCase
   implements IUseCase<ByIdDTO, EventOutput | null>
 {
   constructor(
     @InjectRepository(Event) private readonly repository: Repository<Event>,
+    private readonly s3: S3Gateway,
   ) {}
 
   async execute(input: ByIdDTO): Promise<EventOutput | null> {
@@ -18,6 +20,12 @@ export class GetEventByIdUseCase
 
     if (!event) {
       return null;
+    }
+
+    if (event.logo) {
+      const url = await this.s3.getUrl(event.logo);
+
+      event.logo = url;
     }
 
     return EventMapper.toOutput(event);

@@ -9,12 +9,14 @@ import { AuthStorage } from '../../../../@shared/application/auth-storage';
 import { BadRequestException } from '@nestjs/common';
 import { EventMapper } from '../../mappers/event.mapper';
 import { addHours, isBefore } from 'date-fns';
+import { S3Gateway } from '../../../aws/s3.gateway';
 
 export class CreateEventUseCase
   implements IUseCase<CreateEventDTO, EventOutput>
 {
   constructor(
     @InjectRepository(Event) private readonly repository: Repository<Event>,
+    private readonly s3: S3Gateway,
   ) {}
 
   async execute(input: CreateEventDTO): Promise<EventOutput> {
@@ -27,6 +29,12 @@ export class CreateEventUseCase
     }
 
     const event = new Event();
+
+    if (input.file) {
+      const key = await this.s3.uploadFile(input.file);
+
+      event.logo = key;
+    }
 
     event.id = randomUUID();
     event.name = input.name;
@@ -49,6 +57,12 @@ export class CreateEventUseCase
     event.user = user;
 
     await this.repository.save(event);
+
+    if (event.logo) {
+      const logoUrl = await this.s3.getUrl(event.logo);
+
+      event.logo = logoUrl;
+    }
 
     return EventMapper.toOutput(event);
   }

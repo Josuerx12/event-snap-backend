@@ -10,6 +10,7 @@ export class EventMapper {
       description: entity.description,
       eventDate: entity.eventDate,
       publicToken: entity.publicToken,
+      logo: entity.logo,
       user: entity?.user && UserMapper.toOutput(entity.user),
       photos: entity.photos,
       createdAt: entity.createdAt,

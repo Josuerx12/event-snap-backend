@@ -11,12 +11,14 @@ import {
 } from '@nestjs/common';
 import { EventMapper } from '../../mappers/event.mapper';
 import { UpdateEventDTO } from '../../domain/dto/update-event.dto';
+import { S3Gateway } from '../../../aws/s3.gateway';
 
 export class UpdateEventUseCase
   implements IUseCase<UpdateEventDTO, EventOutput>
 {
   constructor(
     @InjectRepository(Event) private readonly repository: Repository<Event>,
+    private readonly s3: S3Gateway,
   ) {}
 
   async execute(input: UpdateEventDTO): Promise<EventOutput> {
@@ -42,11 +44,25 @@ export class UpdateEventUseCase
       );
     }
 
+    if (input.file) {
+      if (event.logo) {
+        this.s3.deleteFile(event.logo);
+      }
+
+      const key = await this.s3.uploadFile(input.file);
+
+      event.logo = key;
+    }
+
     if (input.name) event.name = input.name;
     if (input.description) event.description = input.description;
     if (input.eventDate) event.eventDate = new Date(input.eventDate);
 
     await this.repository.save(event);
+
+    const getFileUrl = await this.s3.getUrl(event.logo);
+
+    event.logo = getFileUrl;
 
     return EventMapper.toOutput(event);
   }

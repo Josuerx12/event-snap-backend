@@ -56,9 +56,9 @@ export class User extends EntityAbstract {
   })
   events: Event[];
 
-  @OneToMany(() => Subscription, (s) => s.user, {
+  @OneToOne(() => Subscription, (s) => s.user, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
   })
-  subscriptions: Subscription[];
+  subscription: Subscription;
 }
