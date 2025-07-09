@@ -15,6 +15,7 @@ import { GetEventPhotosDTO } from '../../core/events/domain/dto/get-event-photos
 import { GetEventPhotosUseCase } from '../../core/events/application/use-cases/get-event-photos.use-case';
 import { GetEventWithoutAuthUseCase } from '../../core/events/application/use-cases/get-event-without-auth.use-case';
 import { GetEventWithoutAuthDTO } from '../../core/events/domain/dto/get-event-without-auth.dto';
+import { DeletePhotoUseCase } from '../../core/events/application/use-cases/delete-photo.use-case';
 
 @Injectable()
 export class EventService {
@@ -28,6 +29,7 @@ export class EventService {
     private readonly addEventPhotosUseCase: AddEventPhotosUseCase,
     private readonly getEventPhotosUseCase: GetEventPhotosUseCase,
     private readonly getEventWithoutAuthUseCase: GetEventWithoutAuthUseCase,
+    private readonly deletePhotoUseCase: DeletePhotoUseCase,
   ) {}
 
   create(data: CreateEventDTO) {
@@ -64,5 +66,9 @@ export class EventService {
 
   delete(data: ByIdDTO) {
     return this.deleteEventUseCase.execute(data);
+  }
+
+  deletePhoto(data: ByIdDTO) {
+    return this.deletePhotoUseCase.execute(data);
   }
 }

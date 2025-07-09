@@ -22,6 +22,7 @@ import { IsPublic } from '../../@shared/application/decorators/is-public.decorat
 import { AddEventPhotosDTO } from '../../core/events/domain/dto/add-event-photos.dto';
 import { GetEventPhotosDTO } from '../../core/events/domain/dto/get-event-photos.dto';
 import { GetEventWithoutAuthDTO } from '../../core/events/domain/dto/get-event-without-auth.dto';
+import { ByIdDTO } from '../../@shared/domain/dto/by-id.dto';
 
 @Controller('events')
 export class EventsController {
@@ -89,6 +90,12 @@ export class EventsController {
   @Get(':id')
   getById(@Param() data: EventByIdDTO) {
     return this.eventService.getById(data);
+  }
+
+  @Delete('/photos/:id')
+  @HttpCode(204)
+  deletePhoto(@Param() params: ByIdDTO) {
+    return this.eventService.deletePhoto(params);
   }
 
   @Delete(':id')
