@@ -32,17 +32,19 @@ export class AddEventPhotosUseCase
     }
 
     const photoPromises = input.photos?.map(async (p) => {
-      const photoKey = await this.s3.uploadFile(p);
+      if (p.mimetype.includes('image')) {
+        const photoKey = await this.s3.uploadFile(p);
 
-      const photo = new Photo();
+        const photo = new Photo();
 
-      photo.id = randomUUID();
-      photo.image = photoKey;
-      photo.sizeInMb = p.size;
-      photo.message = input.message;
-      photo.event = event;
+        photo.id = randomUUID();
+        photo.image = photoKey;
+        photo.sizeInMb = p.size;
+        photo.message = input.message;
+        photo.event = event;
 
-      await this.repository.save(photo);
+        await this.repository.save(photo);
+      }
     });
 
     await Promise.all(photoPromises);

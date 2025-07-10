@@ -44,7 +44,7 @@ export class UpdateEventUseCase
       );
     }
 
-    if (input.file) {
+    if (input.file && input.file.mimetype.includes('image')) {
       if (event.logo) {
         this.s3.deleteFile(event.logo);
       }

@@ -30,7 +30,7 @@ export class CreateEventUseCase
 
     const event = new Event();
 
-    if (input.file) {
+    if (input.file && input.file.mimetype.includes('image')) {
       const key = await this.s3.uploadFile(input.file);
 
       event.logo = key;
